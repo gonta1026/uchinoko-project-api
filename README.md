@@ -36,3 +36,36 @@ npm run migrate:run
 npm run dev:watch
 ```
 
+### Dockerを使う場合
+1. リポジトリをクローンします
+
+2. パッケージをインストールします
+```bash
+npm instal
+```
+
+3. .envファイルを編集します
+```env
+APP_PORT=8080
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USER="root"
+DB_PASS="123456"
+DB_NAME="uchinoko_project"
+SECRET_KEY=""
+```
+
+4. Dockerを起動します
+```bash
+docker-compose up -d
+```
+
+5. マイグレーションを実行します(テーブルの作成とシードの投入)
+```bash
+npm run migrate:run
+```
+
+6. サーバーを起動します
+```bash
+npm run dev:watch
+```

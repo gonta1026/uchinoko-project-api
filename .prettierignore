@@ -6,3 +6,4 @@ package-lock.json
 tsconfig.json
 tsconfig.eslint.json
 .eslintrc.js
+docker-compose.yml

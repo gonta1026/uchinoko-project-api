@@ -23,16 +23,16 @@ export class Pet {
     readonly id?: number;
 
     @Column()
-    readonly name: string;
+    public name: string;
 
     @Column("enum", { enum: Sex })
-    sex: Sex;
+    public sex: Sex;
 
     @Column()
-    readonly imagePath: string;
+    public imagePath: string;
 
     @Column()
-    readonly userId: number;
+    public userId: number;
 
     @Column("datetime", { default: null })
     birthday: Date | null = null;
