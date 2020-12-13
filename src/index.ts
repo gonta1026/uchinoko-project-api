@@ -19,6 +19,7 @@ import {
 // Auth
 import { auth } from "./modules/auth";
 import "./lib/env";
+import { postCreate, validatePostCreate } from "./controller/posts";
 
 const env = process.env;
 const port: string | number = env.APP_PORT || 5000;
@@ -50,6 +51,9 @@ const port: string | number = env.APP_PORT || 5000;
     app.post("/api/v1/pets", validatePetCreate, petCreate(db));
     app.put("/api/v1/pets/:id", petUpdate(db));
     app.delete("/api/v1/pets/:id", petDelete(db));
+
+    // Posts Resource
+    app.post("/api/v1/posts", validatePostCreate, postCreate(db));
 
     app.listen(port, () => console.log(`hosting @${port}`));
     // ➅エラーハンドリング
