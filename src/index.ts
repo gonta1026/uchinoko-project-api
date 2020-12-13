@@ -37,12 +37,12 @@ const port: string | number = env.APP_PORT || 5000;
     app.get("/api/user/hoge", hogeIndex());
     // fetch all users
     // curl -X GET 'http://localhost:8080/api/users'
-    app.get("/api/users", usersIndex(db));
-    app.get("/api/user/:id", userShow(db));
-    app.put("/api/user/:id", userEmailChange(db));
-    app.put("/api/user/all/:id", userAllChange(db));
+    app.get("/api/v1/users", usersIndex(db));
+    app.get("/api/v1/users/:id", userShow(db));
+    app.put("/api/v1/users/:id", userEmailChange(db));
+    app.put("/api/v1/users/all/:id", userAllChange(db));
     // curl -X POST -H "Content-Type: application/json" -d '{"name":"my shop name", "lastName":"Fast Food", "age":25}' "http://localhost:8080/api/users"
-    app.post("/api/users", validateStoreCreate, userCreate(db));
+    app.post("/api/v1/users", validateStoreCreate, userCreate(db));
 
     // Pets Resource
     app.get("/api/v1/pets", petsIndex(db));
