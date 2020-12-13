@@ -9,6 +9,7 @@ import {
 
 import { Pet } from "./Pet";
 import { Like } from "./Like";
+import { Post } from "./Post";
 
 @Entity({ name: "user" })
 export class User {
@@ -35,6 +36,9 @@ export class User {
 
     @OneToMany(type => Like, like => like.user)
     likes?: Like[];
+
+    @OneToMany(type => Post, post => post.user)
+    posts?: Post[];
 
     constructor(name: string, password: string, email: string, age: number) {
         this.name = name;
