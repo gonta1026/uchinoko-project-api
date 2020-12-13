@@ -8,7 +8,8 @@ import { sendError } from "../../response";
 
 export const validateStoreCreate = [
     check("name").not().isEmpty(),
-    check("age").not().isEmpty(),
+    check("email").not().isEmpty(),
+    check("password").not().isEmpty(),
 ];
 
 export const userCreate = (db: Connection) => {
@@ -34,7 +35,7 @@ export const userCreate = (db: Connection) => {
                 });
             }
 
-            return sendError(res, 400);
+            return sendError(res, 400, "Invalid Parameters.");
         } catch (e) {
             console.error(e);
             return sendError(res, 500, "error");
