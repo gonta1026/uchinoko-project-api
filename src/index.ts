@@ -16,10 +16,11 @@ import {
     petUpdate,
     validatePetCreate,
 } from "./controller/pets";
+// Posts
+import { postCreate, postsIndex, validatePostCreate } from "./controller/posts";
 // Auth
 import { auth } from "./modules/auth";
 import "./lib/env";
-import { postCreate, postsIndex, validatePostCreate } from "./controller/posts";
 
 const env = process.env;
 const port: string | number = env.APP_PORT || 5000;
