@@ -21,6 +21,7 @@ import {
     postCreate,
     postDelete,
     postsIndex,
+    postUpdate,
     validatePostCreate,
 } from "./controller/posts";
 // Auth
@@ -63,6 +64,7 @@ const port: string | number = env.APP_PORT || 5000;
     app.get("/api/v1/posts", postsIndex(db));
     app.get("/api/v1/posts/:id", postShow(db));
     app.post("/api/v1/posts", validatePostCreate, postCreate(db));
+    app.put("/api/v1/posts/:id", postUpdate(db));
     app.delete("/api/v1/posts/:id", postDelete(db));
 
     app.listen(port, () => console.log(`hosting @${port}`));
