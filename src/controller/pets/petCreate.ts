@@ -57,7 +57,7 @@ export const petCreate = (db: Connection) => {
 
             return res.status(400).send({
                 status: 400,
-                message: "parameters are invalid.",
+                message: "Invalid parameters.",
             });
         } catch (error) {
             return sendError(res, 500, error);
