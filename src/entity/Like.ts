@@ -9,7 +9,7 @@ import {
 } from "typeorm";
 
 import { User } from "./User";
-import { Pet } from "./Pet";
+import { Post } from "./Post";
 
 @Entity({ name: "like" })
 export class Like {
@@ -20,7 +20,7 @@ export class Like {
     readonly userId: number;
 
     @Column()
-    readonly petId: number;
+    readonly postId: number;
 
     @CreateDateColumn()
     readonly createdAt?: Date;
@@ -32,12 +32,12 @@ export class Like {
     @JoinColumn({ name: "userId" })
     readonly user?: User;
 
-    @ManyToOne(type => Pet, pet => pet.likes)
-    @JoinColumn({ name: "petId" })
-    readonly pet?: Pet;
+    @ManyToOne(type => Post, post => post.likes)
+    @JoinColumn({ name: "postId" })
+    readonly post?: Post;
 
-    constructor(userId: number, petId: number) {
+    constructor(userId: number, postId: number) {
         this.userId = userId;
-        this.petId = petId;
+        this.postId = postId;
     }
 }
