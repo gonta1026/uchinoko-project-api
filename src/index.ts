@@ -24,10 +24,13 @@ import {
     postUpdate,
     validatePostCreate,
 } from "./controller/posts";
+// Likes
+import { likeCreate } from "./controller/likes";
 // Auth
 import { auth } from "./modules/auth";
 import "./lib/env";
 import { postShow } from "./controller/posts/postShow";
+import { validateLikeCreate } from "./controller/likes/likeCreate";
 
 const env = process.env;
 const port: string | number = env.APP_PORT || 5000;
@@ -66,6 +69,9 @@ const port: string | number = env.APP_PORT || 5000;
     app.post("/api/v1/posts", validatePostCreate, postCreate(db));
     app.put("/api/v1/posts/:id", postUpdate(db));
     app.delete("/api/v1/posts/:id", postDelete(db));
+
+    // Likes Resource
+    app.post("/api/v1/likes", validateLikeCreate, likeCreate(db));
 
     app.listen(port, () => console.log(`hosting @${port}`));
     // ➅エラーハンドリング
