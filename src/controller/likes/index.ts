@@ -1,1 +1,2 @@
-export { likeCreate } from "./likeCreate";
+export { likeCreate, validateLikeCreate } from "./likeCreate";
+export { likesIndex } from "./likesIndex";
