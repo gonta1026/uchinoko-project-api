@@ -1,0 +1,1 @@
+export { likeCreate } from "./likeCreate";
