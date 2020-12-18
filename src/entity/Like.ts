@@ -19,22 +19,22 @@ export class Like {
     @Column()
     readonly userId: number;
 
+    @ManyToOne(type => User, user => user.likes)
+    @JoinColumn({ name: "userId" })
+    readonly user?: User;
+
     @Column()
     readonly postId: number;
+
+    @ManyToOne(type => Post, post => post.likes)
+    @JoinColumn({ name: "postId" })
+    readonly post?: Post;
 
     @CreateDateColumn()
     readonly createdAt?: Date;
 
     @UpdateDateColumn()
     readonly updatedAt?: Date;
-
-    @ManyToOne(type => User, user => user.likes)
-    @JoinColumn({ name: "userId" })
-    readonly user?: User;
-
-    @ManyToOne(type => Post, post => post.likes)
-    @JoinColumn({ name: "postId" })
-    readonly post?: Post;
 
     constructor(userId: number, postId: number) {
         this.userId = userId;
