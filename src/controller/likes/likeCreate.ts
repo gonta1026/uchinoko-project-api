@@ -42,7 +42,7 @@ export const likeCreate = (db: Connection) => {
                 },
             });
 
-            if (existLike) {
+            if (existLike.length !== 0) {
                 return res.status(400).send({
                     status: 400,
                     message: "Already exists.",
