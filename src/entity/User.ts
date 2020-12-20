@@ -14,7 +14,7 @@ import { Post } from "./Post";
 @Entity({ name: "user" })
 export class User {
     @PrimaryGeneratedColumn()
-    private readonly id?: number;
+    public readonly id?: number;
 
     @Column()
     public name: string;
