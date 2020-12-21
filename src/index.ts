@@ -4,7 +4,7 @@ import { hogeIndex } from "./controller/sample/hoge";
 // Users
 import { usersIndex } from "./controller/users";
 import { userShow } from "./controller/users/find";
-import { userLogin } from "./controller/users/login";
+import { userLogin, validateUserLogin } from "./controller/users/login";
 import { userEmailChange, userAllChange } from "./controller/users/update";
 import { userCreate, validateStoreCreate } from "./controller/users/create";
 // Pets
@@ -78,6 +78,9 @@ const port: string | number = env.APP_PORT || 5000;
     app.get("/api/v1/likes", likesIndex(db));
     app.post("/api/v1/likes", validateLikeCreate, likeCreate(db));
     app.delete("/api/v1/likes", likeDelete(db));
+
+    // Login
+    app.post("/api/v1/auth", validateUserLogin, userLogin(db));
 
     app.listen(port, () => console.log(`hosting @${port}`));
     // ➅エラーハンドリング
