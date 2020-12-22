@@ -4,7 +4,7 @@ import "../lib/env";
 const env = process.env;
 const KEY = env.SECRET_KEY as string;
 
-export const auth = (req: any, _: Response, next: NextFunction) => {
+export const auth = (req: any, res: Response, next: NextFunction) => {
     // リクエストヘッダーからトークンの取得
     let token = "";
     if (
@@ -13,13 +13,21 @@ export const auth = (req: any, _: Response, next: NextFunction) => {
     ) {
         token = req.headers.authorization.split(" ")[1];
     } else {
-        return next("token none");
+        // return next("token none");
+        return res.status(400).send({
+            status: 401,
+            message: "Unauthorized",
+        });
     }
     // トークンの検証
     jwt.verify(token, KEY, function (err, decoded) {
         if (err) {
             // 認証NGの場合
-            next(err.message);
+            // next(err.message);
+            return res.status(403).send({
+                status: 403,
+                message: "Forbidden",
+            });
         } else {
             // 認証OKの場合
             req.decoded = decoded;
