@@ -52,7 +52,7 @@ DB_PORT=3306
 DB_USER="root"
 DB_PASS="123456"
 DB_NAME="uchinoko_project"
-SECRET_KEY=""
+SECRET_KEY="SOME_VALUE"
 ```
 
 4. Dockerを起動します

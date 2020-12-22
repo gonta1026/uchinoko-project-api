@@ -4,7 +4,7 @@ import { hogeIndex } from "./controller/sample/hoge";
 // Users
 import { usersIndex } from "./controller/users";
 import { userShow } from "./controller/users/find";
-import { userLogin } from "./controller/users/login";
+import { userLogin, validateUserLogin } from "./controller/users/login";
 import { userEmailChange, userAllChange } from "./controller/users/update";
 import { userCreate, validateStoreCreate } from "./controller/users/create";
 // Pets
@@ -55,29 +55,32 @@ const port: string | number = env.APP_PORT || 5000;
     // curl -X GET 'http://localhost:8080/api/users'
     app.get("/api/v1/users", usersIndex(db));
     app.get("/api/v1/users/:id", userShow(db));
-    app.put("/api/v1/users/:id", userEmailChange(db));
-    app.put("/api/v1/users/all/:id", userAllChange(db));
+    app.put("/api/v1/users/:id", auth, userEmailChange(db));
+    app.put("/api/v1/users/all/:id", auth, userAllChange(db));
     // curl -X POST -H "Content-Type: application/json" -d '{"name":"my shop name", "lastName":"Fast Food", "age":25}' "http://localhost:8080/api/users"
-    app.post("/api/v1/users", validateStoreCreate, userCreate(db));
+    app.post("/api/v1/users", auth, validateStoreCreate, userCreate(db));
 
     // Pets Resource
     app.get("/api/v1/pets", petsIndex(db));
     app.get("/api/v1/pets/:id", petShow(db));
-    app.post("/api/v1/pets", validatePetCreate, petCreate(db));
-    app.put("/api/v1/pets/:id", petUpdate(db));
-    app.delete("/api/v1/pets/:id", petDelete(db));
+    app.post("/api/v1/pets", auth, validatePetCreate, petCreate(db));
+    app.put("/api/v1/pets/:id", auth, petUpdate(db));
+    app.delete("/api/v1/pets/:id", auth, petDelete(db));
 
     // Posts Resource
     app.get("/api/v1/posts", postsIndex(db));
     app.get("/api/v1/posts/:id", postShow(db));
-    app.post("/api/v1/posts", validatePostCreate, postCreate(db));
-    app.put("/api/v1/posts/:id", postUpdate(db));
-    app.delete("/api/v1/posts/:id", postDelete(db));
+    app.post("/api/v1/posts", auth, validatePostCreate, postCreate(db));
+    app.put("/api/v1/posts/:id", auth, postUpdate(db));
+    app.delete("/api/v1/posts/:id", auth, postDelete(db));
 
     // Likes Resource
     app.get("/api/v1/likes", likesIndex(db));
-    app.post("/api/v1/likes", validateLikeCreate, likeCreate(db));
-    app.delete("/api/v1/likes", likeDelete(db));
+    app.post("/api/v1/likes", auth, validateLikeCreate, likeCreate(db));
+    app.delete("/api/v1/likes", auth, likeDelete(db));
+
+    // Login
+    app.post("/api/v1/auth", validateUserLogin, userLogin(db));
 
     app.listen(port, () => console.log(`hosting @${port}`));
     // ➅エラーハンドリング
