@@ -1,5 +1,6 @@
 import { Response, Request, NextFunction } from "express";
 import { initializeApp } from "./config/initializer";
+import cors from "cors";
 import { hogeIndex } from "./controller/sample/hoge";
 // Users
 import { usersIndex } from "./controller/users";
@@ -41,6 +42,13 @@ const port: string | number = env.APP_PORT || 5000;
 
 (async (): Promise<void> => {
     const { app, db } = await initializeApp();
+
+    app.use(
+        cors({
+            origin: true,
+            credentials: true,
+        })
+    );
 
     app.get("/", (_, res: Response<string>): void => {
         res.send(
