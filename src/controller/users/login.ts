@@ -59,7 +59,7 @@ export const userLogin = (db: Connection) => {
             const token = jwt.sign(payload, KEY, option);
 
             // Response
-            return sendOKAtToken(res, "create token", token);
+            return sendOKAtToken(res, "create token", token, uid as number);
         } catch (e) {
             console.error(e);
             return sendError(res, 500, "error");

@@ -4,6 +4,7 @@ interface IResponseSchema {
     data?: any;
     status: number;
     token?: string;
+    uid?: number;
 }
 
 export const respondWithSchema = (response: IResponseSchema) => response;
@@ -16,12 +17,18 @@ export const sendOK = (res: Response, data: any = "") =>
         })
     );
 
-export const sendOKAtToken = (res: Response, data: any = "", token: string) =>
+export const sendOKAtToken = (
+    res: Response,
+    data: any = "",
+    token: string,
+    uid: number
+) =>
     res.status(200).send(
         respondWithSchema({
             data,
             status: 200,
             token,
+            uid,
         })
     );
 
