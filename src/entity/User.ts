@@ -9,11 +9,12 @@ import {
 
 import { Pet } from "./Pet";
 import { Like } from "./Like";
+import { Post } from "./Post";
 
 @Entity({ name: "user" })
 export class User {
     @PrimaryGeneratedColumn()
-    private readonly id?: number;
+    public readonly id?: number;
 
     @Column()
     public name: string;
@@ -35,6 +36,9 @@ export class User {
 
     @OneToMany(type => Like, like => like.user)
     likes?: Like[];
+
+    @OneToMany(type => Post, post => post.user)
+    posts?: Post[];
 
     constructor(name: string, password: string, email: string, age: number) {
         this.name = name;

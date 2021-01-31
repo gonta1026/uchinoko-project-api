@@ -41,7 +41,7 @@ npm run dev:watch
 
 2. パッケージをインストールします
 ```bash
-npm instal
+npm install
 ```
 
 3. .envファイルを編集します
@@ -52,7 +52,7 @@ DB_PORT=3306
 DB_USER="root"
 DB_PASS="123456"
 DB_NAME="uchinoko_project"
-SECRET_KEY=""
+SECRET_KEY="SOME_VALUE"
 ```
 
 4. Dockerを起動します
@@ -68,4 +68,9 @@ npm run migrate:run
 6. サーバーを起動します
 ```bash
 npm run dev:watch
+```
+
+7. Dockerを停止するとき
+```bash
+docker-compose stop
 ```

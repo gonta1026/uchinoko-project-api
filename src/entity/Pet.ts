@@ -10,7 +10,7 @@ import {
 } from "typeorm";
 
 import { User } from "./User";
-import { Like } from "./Like";
+import { Post } from "./Post";
 
 enum Sex {
     MALE = "male",
@@ -50,8 +50,8 @@ export class Pet {
     @JoinColumn({ name: "userId" })
     readonly user?: User;
 
-    @OneToMany(type => Like, like => like.pet)
-    likes?: Like[];
+    @OneToMany(type => Post, post => post.pet)
+    posts?: Post[];
 
     constructor(
         name: string,
