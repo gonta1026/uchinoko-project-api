@@ -17,6 +17,9 @@ node_modules/
 # 永続化データを対象から外します
 docker/db/data
 
+# JetBrainsのデータを除外
+.idea/
+
 # MacOS
 # General
 .DS_Store
