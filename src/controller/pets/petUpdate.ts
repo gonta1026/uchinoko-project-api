@@ -32,6 +32,8 @@ export const petUpdate = (db: Connection) => {
             const name = req.body.name || pet.name;
             const sex = req.body.sex || pet.sex;
             const imagePath = req.body.imagePath || pet.imagePath;
+            const attractiveFeature =
+                req.body.attractiveFeature || pet.attractiveFeature;
             const userId = req.body.userId || pet.userId;
             const birthday = req.body.birthday || pet.birthday;
             const pickupDate = req.body.pickupDate || pet.pickupDate;
@@ -40,6 +42,7 @@ export const petUpdate = (db: Connection) => {
             pet.name = name;
             pet.sex = sex;
             pet.imagePath = imagePath;
+            pet.attractiveFeature = attractiveFeature;
             pet.userId = userId;
             pet.birthday = birthday;
             pet.pickupDate = pickupDate;

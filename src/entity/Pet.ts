@@ -32,6 +32,9 @@ export class Pet {
     public imagePath: string;
 
     @Column()
+    public attractiveFeature: string;
+
+    @Column()
     public userId: number;
 
     @Column("datetime", { default: null })
@@ -57,6 +60,7 @@ export class Pet {
         name: string,
         userId: number,
         imagePath: string,
+        attractiveFeature: string,
         sex: Sex,
         birthday: Date,
         pickupDate: Date
@@ -64,6 +68,7 @@ export class Pet {
         this.name = name;
         this.birthday = birthday;
         this.imagePath = imagePath;
+        this.attractiveFeature = attractiveFeature;
         this.sex = sex;
         this.userId = userId;
         this.pickupDate = pickupDate;
