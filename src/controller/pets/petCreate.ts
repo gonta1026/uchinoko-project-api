@@ -13,6 +13,7 @@ export const validatePetCreate = [
     check("sex").not().isEmpty(),
     // check("imagePath").not().isEmpty(),
     check("userId").not().isEmpty(),
+    // check("attractiveFeature").not().isEmpty(),
     check("birthday").not().isEmpty(),
     check("pickupDate").not().isEmpty(),
 ];
@@ -29,6 +30,7 @@ export const petCreate = (db: Connection) => {
                 const name = req.body.name || "";
                 const sex = req.body.sex || "";
                 const imagePath = req.body.imagePath || "";
+                const attractiveFeature = req.body.attractiveFeature || "";
                 const userId = req.body.userId || "";
                 const birthday = req.body.birthday || "";
                 const pickupDate = req.body.pickupDate || "";
@@ -41,6 +43,7 @@ export const petCreate = (db: Connection) => {
                     name,
                     sex,
                     imagePath,
+                    attractiveFeature,
                     userId,
                     birthday,
                     pickupDate,
